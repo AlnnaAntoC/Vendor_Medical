@@ -1,0 +1,236 @@
+/*
+ * --------------------------------
+ * GLOBAL & UTILITY STYLES
+ * --------------------------------
+ */
+
+/* Custom properties for easy color/animation adjustments */
+:root {
+  --color-primary-light: #52c7b5; /* Light Teal/Cyan from image header */
+  --color-primary-dark: #2a8a7a;
+  --color-text-dark: #333;
+  --color-text-light: #f9f9f9;
+  --card-background-blur: 8px;
+  --card-border-opacity: 0.2;
+  --card-shadow-opacity: 0.25;
+}
+
+.contact-page-container {
+  /* Ensures the content stretches correctly and handles background */
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7f7f7; /* Light background for contrast */
+  
+  /* <<<<<<<<<<<<<<<< CHANGE HERE: ADD TOP WHITE SPACE FOR NAV BAR >>>>>>>>>>>>>>> */
+  padding-top: 100px; /* Adjust this value (e.g., 60px, 80px, 100px) based on your actual nav bar height */
+}
+
+/*
+ * --------------------------------
+ * 1. HERO SECTION STYLES (MODIFIED HEIGHT & IMAGE PATH REMOVED)
+ * --------------------------------
+ */
+
+.contact-hero-section {
+  position: relative;
+  width: 100%;
+  height: 350px; 
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  align-items: center;
+}
+
+.hero-top-padding {
+  /* This was originally for a small space above the title, but the main padding-top 
+     on the container handles the navigation bar clearance now. */
+  height: 20px;
+}
+
+.hero-content {
+  width: 100%;
+  padding-bottom: 150px; 
+  text-align: center;
+  position: relative;
+  z-index: 2; 
+}
+
+.contact-hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Overlay to match the image's cyan/teal tint */
+  background: rgba(0, 128, 128, 0.5); 
+  z-index: 1;
+}
+
+.contact-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-text-light); 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/*
+ * --------------------------------
+ * 2. MAIN CONTENT & GRID LAYOUT (POSITIONED AFTER HERO)
+ * --------------------------------
+ */
+
+.contact-main-content {
+  width: 90%;
+  max-width: 1200px;
+  /* Positive margin to place the cards BELOW the hero section */
+  margin: 30px auto 50px auto; 
+  position: relative;
+  z-index: 3; 
+}
+
+.contact-cards-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 30px; 
+}
+
+@media (max-width: 992px) {
+  .contact-cards-wrapper {
+    grid-template-columns: 1fr; 
+    margin-top: 20px;
+  }
+}
+
+/*
+ * --------------------------------
+ * GLASSMORPHISM & 3D EFFECTS
+ * --------------------------------
+ */
+
+.glassmorphic-card {
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(var(--card-background-blur)); 
+  background: rgba(255, 255, 255, 0.15); 
+  border: 1px solid rgba(255, 255, 255, var(--card-border-opacity));
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, var(--card-shadow-opacity));
+  /* 3D effect setup */
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;
+}
+
+.glassmorphic-card:hover {
+  /* Subtle 3D tilt on hover */
+  transform: perspective(1000px) rotateY(1deg) rotateX(1deg);
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.4);
+}
+
+.card-heading {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 20px;
+}
+
+/*
+ * --------------------------------
+ * LEFT CARD: Get in touch (with Animated Multicolour Background)
+ * --------------------------------
+ */
+
+.get-in-touch-card {
+  position: relative;
+  z-index: 1; 
+  background: rgba(0, 0, 0, 0.05); 
+  color: var(--color-text-dark);
+  overflow: hidden;
+}
+
+.card-text {
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-weight: 400;
+  position: relative; 
+  z-index: 2;
+}
+
+/* Animated Multicolour Background Art */
+.card-background-art {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(
+    from 0deg,
+    #0e1888, /* Pink */
+    #1c536f, /* Light Blue */
+    #88d9d8, /* Pale Yellow */
+    #3a8a76, /* Lime Green */
+    #50f4ad /* Complete the loop */
+  );
+  animation: rotate-gradient 30s linear infinite;
+  opacity: 0.3; 
+  z-index: 0;
+}
+
+@keyframes rotate-gradient {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/*
+ * --------------------------------
+ * RIGHT CARD: CONTACT INFO
+ * --------------------------------
+ */
+
+.contact-info-card {
+  /* Lighter glass base to match the image */
+  background: rgba(200, 212, 237, 0.6); 
+}
+
+.contact-info-heading {
+  font-size: 2.8rem;
+  font-weight: 700;
+  
+  color: var(--color-primary-dark);
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.contact-detail {
+  margin-bottom: 20px;
+}
+
+.detail-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 5px;
+}
+
+.detail-content {
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.detail-link {
+  /* Style for all hyperlinked contact info */
+  color: var(--color-primary-dark);
+  text-decoration: none; 
+  transition: color 0.3s ease;
+}
+
+.detail-link:hover {
+  color: var(--color-primary-light);
+  text-decoration: underline;
+}

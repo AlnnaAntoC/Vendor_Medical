@@ -1,0 +1,146 @@
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  position: fixed;
+  top: 30px; /* height of header */
+  left: 0;
+  right: 0;
+  height: 70px; /* adjust as needed */
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Logo styles */
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  height: 100px; /* bigger logo */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #1e105d;
+  transition: all 0.3s ease;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Hover effect with gradient underline */
+.nav-links button::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, #06a88a, #03767c);
+  transition: 0.3s ease;
+}
+
+.nav-links button:hover::after {
+  width: 100%;
+}
+
+.nav-links button:hover {
+  color: #290a8e;
+  transform: translateY(-2px);
+}
+
+/* ---------- CONTENT SPACING ---------- */
+/* Ensure page content is below fixed header + navbar */
+.page-container {
+  margin-top: 120px; /* header height + navbar height */
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown button */
+.dropdown-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #3ee4d0;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  z-index: 10;
+}
+
+/* Dropdown items */
+.dropdown-menu button {
+  padding: 10px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-menu button:hover {
+  background: #e7fdfb;
+}
+
+
+
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .header {
+    height: 60px;
+    padding: 0 15px;
+    font-size: 0.8rem;
+  }
+  .navbar {
+    top: 60px;
+    padding: 0 20px;
+  }
+  .page-container {
+    margin-top: 130px;
+  }
+  .logo-img {
+    height: 50px;
+  }
+  .nav-links {
+    gap: 15px;
+  }
+}

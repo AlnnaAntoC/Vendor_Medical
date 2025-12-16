@@ -1,0 +1,130 @@
+/* Keyframes for moving gradient overlay */
+@keyframes movingGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Section with background image + animated gradient overlay */
+.services-section {
+  position: relative;
+  padding: 60px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Background image */
+.services-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/background.jpg') center/cover no-repeat;
+  filter: blur(4px) brightness(0.7); /* Blurry + slightly dark */
+  z-index: -2;
+}
+
+/* Moving gradient overlay on top of the image */
+.services-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(270deg, #00c6ff, #0072ff, #00ffa6, #004e92);
+  background-size: 800% 800%;
+  animation: movingGradient 20s ease infinite;
+  opacity: 0.5; /* Semi-transparent overlay */
+  z-index: -1;
+}
+
+/* Container for cards */
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 30px;
+  width: 100%;
+  max-width: 1400px;
+  position: relative;
+  z-index: 2; /* On top of overlay */
+}
+
+/* White Glassmorphic Cards */
+.service-card {
+  display: block;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover img {
+  transform: scale(1.1);
+}
+
+.service-card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.service-card-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 15px;
+  color: #0072ff; /* accent color matching gradient */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .services-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .services-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .service-card img {
+    height: 160px;
+  }
+}
+
+@media (max-width: 600px) {
+  .services-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .service-card img {
+    height: 150px;
+  }
+  .service-card-content h3 {
+    font-size: 1rem;
+  }
+}
