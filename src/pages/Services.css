@@ -1,130 +1,203 @@
-/* Keyframes for moving gradient overlay */
-@keyframes movingGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* ===============================
+   SERVICES WRAPPER
+================================= */
+.services-wrapper {
+  background-color: #ffffff; /* clean white background */
+  padding: 0 6%;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
 }
 
-/* Section with background image + animated gradient overlay */
-.services-section {
+/* ===============================
+   NAVBAR BUFFER (white space at top)
+================================= */
+.nav-buffer {
+  height: 80px; /* adjust to your navbar height */
+}
+
+/* ===============================
+   SECTION HEADING (Top Description)
+================================= */
+.ser {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f0f8ff, #e6f0f5); /* soft medical background */
   position: relative;
-  padding: 60px 20px;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
-  z-index: 1;
+  border-radius: 15px;
+  margin-bottom: 60px;
 }
 
-/* Background image */
-.services-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('../assets/background.jpg') center/cover no-repeat;
-  filter: blur(4px) brightness(0.7); /* Blurry + slightly dark */
-  z-index: -2;
+.ser .title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #045b7c; /* primary navy */
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #00ffff, #045b7c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
 }
 
-/* Moving gradient overlay on top of the image */
-.services-section::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(270deg, #00c6ff, #0072ff, #00ffa6, #004e92);
-  background-size: 800% 800%;
-  animation: movingGradient 20s ease infinite;
-  opacity: 0.5; /* Semi-transparent overlay */
-  z-index: -1;
+.ser p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #045b7c;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeInUp 1.2s ease forwards;
+  animation-delay: 0.3s;
 }
 
-/* Container for cards */
-.services-container {
+/* ===============================
+   SERVICES SECTION TITLE
+================================= */
+.services-section {
+  padding: 80px 0;
+}
+
+.services-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #045b7c;
+  text-align: center;
+  margin-bottom: 50px;
+  background: linear-gradient(90deg, #00ffff, #045b7c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+
+/* ===============================
+   SERVICES GRID
+================================= */
+.services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
-  width: 100%;
-  max-width: 1400px;
-  position: relative;
-  z-index: 2; /* On top of overlay */
 }
 
-/* White Glassmorphic Cards */
+/* ===============================
+   SERVICE CARD
+================================= */
 .service-card {
-  display: block;
-  background: rgba(255, 255, 255, 0.95);
+  position: relative;
+  height: 260px;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-decoration: none;
-  color: #333;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 40px rgba(4, 91, 124, 0.15); /* soft navy shadow */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: #ffffff;
 }
 
 .service-card img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  transition: transform 0.3s ease;
+  transition: transform 0.6s ease, filter 0.6s ease;
+  filter: brightness(0.95);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(4, 91, 124, 0.3);
 }
 
 .service-card:hover img {
-  transform: scale(1.1);
+  transform: scale(1.12);
+  filter: brightness(1);
 }
 
-.service-card-content {
+/* ===============================
+   OVERLAY
+================================= */
+.service-overlay {
+  position: absolute;
+  inset: 0;
   padding: 20px;
-  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 91, 124, 0.2),
+    rgba(4, 91, 124, 0.85)
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-radius: 20px;
 }
 
-.service-card-content h3 {
-  font-size: 1.2rem;
+.service-overlay h3 {
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-top: 15px;
-  color: #0072ff; /* accent color matching gradient */
+  color: #ffffff;
+  max-width: 80%;
+  line-height: 1.3;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-  .services-container {
-    grid-template-columns: repeat(3, 1fr);
+.service-overlay p {
+  font-size: 0.9rem;
+  color: #d1e8f2; /* light cyan for contrast */
+  margin-top: 5px;
+}
+
+/* ===============================
+   CTA ARROW / ICON
+================================= */
+.service-arrow {
+  width: 46px;
+  height: 46px;
+  background-color: #00ffff; /* cyan */
+  color: #045b7c; /* primary navy */
+  border-radius: 50%;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===============================
+   FADE IN UP ANIMATION
+================================= */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 900px) {
-  .services-container {
-    grid-template-columns: repeat(2, 1fr);
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+  .services-title {
+    font-size: 2.2rem;
   }
-  .service-card img {
-    height: 160px;
+  .service-overlay h3 {
+    font-size: 1.1rem;
   }
-}
-
-@media (max-width: 600px) {
-  .services-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .service-overlay p {
+    font-size: 0.85rem;
   }
-  .service-card img {
-    height: 150px;
+  .ser .title {
+    font-size: 2.2rem;
   }
-  .service-card-content h3 {
+  .ser p {
     font-size: 1rem;
   }
 }

@@ -466,7 +466,7 @@
 .clients-track img {
   height: 70px;
   margin: 0 40px;
-  filter: grayscale(100%) opacity(0.75);
+  
   transition: all 0.3s ease;
 }
 
@@ -529,7 +529,7 @@
 .cert-track img {
   height: 60px;
   margin: 0 36px;
-  filter: grayscale(100%) opacity(0.8);
+  
   transition: all 0.3s ease;
 }
 

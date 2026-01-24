@@ -1,65 +1,153 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Services.css";
 
-// Temp assets (your existing images)
+// Assets
 import a from "../assets/a.jpg";
 import k from "../assets/k.jpg";
 
-// SECTION DATA
+/* =========================
+   SERVICE DATA MODELS
+   ========================= */
+
+// MEDICAL DIVISION
 const medicalServices = [
-  { name: "Medical Devices", image: k },
-  { name: "Medical Equipment", image: a },
-  { name: "Medical Instruments", image: a },
-  { name: "Lab Devices & Equipment", image: a },
-  { name: "Medical Furniture", image: a },
-  { name: "Physiotherapy & Rehabilitation", image: a },
-  { name: "Medical Consumables & Disposables", image: a },
-  { name: "Dental Division", image: a },
-  { name: "Surgical Instruments", image: a },
-  { name: "CSSD & Infection Control", image: a },
-  { name: "Emergency & PPE Supplies", image: a },
+  {
+    title: "Medical Consumables and Disposables",
+    description: "Single-use essentials ensuring safety, hygiene, and compliance.",
+    image: k,
+    link: "/Medical_devices.jsx", // updated path
+  },
+  {
+    title: "Surgical Instruments",
+    description: "Precision-engineered instruments for critical procedures.",
+    image: a,
+    link: "/pages/surgical-instruments",
+  },
+  {
+    title: "Physiotherapy and Rehabilitation",
+    description: "Advanced recovery and mobility enhancement solutions.",
+    image: a,
+    link: "/pages/physiotherapy-rehabilitation",
+  },
+  {
+    title: "Dental Division",
+    description: "Comprehensive dental equipment and clinical solutions.",
+    image: a,
+    link: "/pages/dental-division",
+  },
+  {
+    title: "CSSD and Infection Control",
+    description: "Sterilization and infection prevention systems.",
+    image: a,
+    link: "/pages/cssd-infection-control",
+  },
+  {
+    title: "Emergency and PPE Supplies",
+    description: "Critical emergency response and protection equipment.",
+    image: a,
+    link: "/pages/emergency-ppe",
+  },
+  {
+    title: "Lab & Analytical",
+    description: "Reliable diagnostic and analytical laboratory systems.",
+    image: a,
+    link: "/pages/lab-analytical",
+  },
+  {
+    title: "Medical Furniture",
+    description: "Ergonomic furniture designed for healthcare environments.",
+    image: a,
+    link: "/pages/medical-furniture",
+  },
 ];
 
+// TRADING DIVISION
 const tradingServices = [
-  { name: "Lab & Analytical Products", image: a },
-  { name: "Medical & Lab Furniture", image: a },
-  { name: "Healthcare & General Furniture", image: a },
+  {
+    title: "Medical & Lab Furniture",
+    description: "Functional furniture solutions for labs and hospitals.",
+    image: a,
+    link: "/pages/medical-lab-furniture",
+  },
+  {
+    title: "Healthcare & General Furniture",
+    description: "Durable furniture supporting healthcare operations.",
+    image: a,
+    link: "/pages/healthcare-general-furniture",
+  },
+  {
+    title: "Lab & Analytical",
+    description: "Trading of laboratory and analytical product portfolios.",
+    image: a,
+    link: "/pages/lab-analytical-trading",
+  },
 ];
 
 const Services = () => {
   return (
     <div className="services-wrapper">
+      <section className="nav-buffer"></section>
 
-      {/* MEDICAL SECTION */}
-      <section id="medical-section" className="services-section">
+      <section className="ser">
+        <h2 className="title">Services</h2>
+        <p>
+          We offer a wide range of medical equipment and supplies, from
+          consumables and surgical instruments to lab devices, rehabilitation
+          tools, and healthcare furniture, ensuring quality, safety, and
+          efficiency for every healthcare facility.
+        </p>
+      </section>
+
+      {/* MEDICAL DIVISION */}
+      <section className="services-section">
         <h2 className="services-title">Medical Division</h2>
-        <div className="services-container">
+
+        <div className="services-grid">
           {medicalServices.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-card-content">
-                <img src={service.image} alt={service.name} />
-                <h3>{service.name}</h3>
+            <Link
+              to={service.link}
+              key={index}
+              className="service-card"
+            >
+              <img src={service.image} alt={service.title} />
+
+              <div className="service-overlay">
+                <div className="service-text">
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </div>
+                <span className="service-arrow">→</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
 
-      {/* TRADING SECTION */}
-      <section id="trading-section" className="services-section">
+      {/* TRADING DIVISION */}
+      <section className="services-section">
         <h2 className="services-title">Trading Division</h2>
-        <div className="services-container">
+
+        <div className="services-grid">
           {tradingServices.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-card-content">
-                <img src={service.image} alt={service.name} />
-                <h3>{service.name}</h3>
+            <Link
+              to={service.link}
+              key={index}
+              className="service-card"
+            >
+              <img src={service.image} alt={service.title} />
+
+              <div className="service-overlay">
+                <div className="service-text">
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </div>
+                <span className="service-arrow">→</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
-
     </div>
   );
 };
